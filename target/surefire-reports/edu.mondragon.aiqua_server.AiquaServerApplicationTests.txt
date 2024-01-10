@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: edu.mondragon.aiqua_server.AiquaServerApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.775 s -- in edu.mondragon.aiqua_server.AiquaServerApplicationTests

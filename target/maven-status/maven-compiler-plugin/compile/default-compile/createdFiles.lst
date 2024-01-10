@@ -1,0 +1,13 @@
+edu\mondragon\aiqua_server\service\UserService.class
+edu\mondragon\aiqua_server\repositories\UserRepository.class
+edu\mondragon\aiqua_server\AiquaServerApplication.class
+edu\mondragon\aiqua_server\service\ReductorService.class
+edu\mondragon\aiqua_server\controllers\AdminController.class
+edu\mondragon\aiqua_server\controllers\LoginController.class
+edu\mondragon\aiqua_server\repositories\ReductorRepository.class
+edu\mondragon\aiqua_server\model\User.class
+edu\mondragon\aiqua_server\service\UserTypeService.class
+edu\mondragon\aiqua_server\model\UserType.class
+edu\mondragon\aiqua_server\controllers\ManteinanceController.class
+edu\mondragon\aiqua_server\model\Reductor.class
+edu\mondragon\aiqua_server\repositories\UserTypeRepository.class
