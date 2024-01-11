@@ -11,6 +11,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "alert")
 public class Alert {
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer alertID;

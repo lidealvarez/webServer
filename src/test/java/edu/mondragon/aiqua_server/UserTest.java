@@ -56,18 +56,4 @@ class UserTest {
         user.setEmail("nagore@gmail.com");
         assertEquals("nagore@gmail.com", user.getEmail());
     }
-
-    // @Test
-    // void testConstructor() {
-    //     User user = new User(1, "nagore", "123", "Nagore", "Elduaien", "6868685", "nagore@gmail.com", new UserType(2, "Manteinance"));
-    //     assertEquals((Integer)1, user.getUserID());
-    //     assertEquals("nagore", user.getUsername());
-    //     assertEquals("123", user.getPassword());
-    //     assertEquals("Nagore", user.getName());
-    //     assertEquals("Elduaien", user.getSurname());
-    //     assertEquals("6868685", user.getPhone());
-    //     assertEquals("nagore@gmail.com", user.getEmail());
-    //     assertEquals((Integer)2, user.getUserType().getUserTypeID());
-    //     assertEquals("Manteinance", user.getUserType().getDescription());
-    // }
 }
