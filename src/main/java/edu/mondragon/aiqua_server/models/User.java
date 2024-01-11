@@ -35,7 +35,7 @@ public class User {
     @JoinTable(name = "userZone",
         joinColumns = {@JoinColumn(name= "userID")},
         inverseJoinColumns = {@JoinColumn(name="zoneID")})
-    private List<Zone> zones = new ArrayList<Zone>();
+    private List<Zone> zones = new ArrayList<>();
 
     @ManyToOne()
     @JoinColumn(name = "userTypeID")

@@ -1,7 +1,6 @@
 package edu.mondragon.aiqua_server.controllers;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,18 +13,17 @@ import edu.mondragon.aiqua_server.models.UserType;
 import edu.mondragon.aiqua_server.services.UserService;
 import edu.mondragon.aiqua_server.services.UserTypeService;
 import edu.mondragon.aiqua_server.services.ZoneService;
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/login")
+@AllArgsConstructor
 public class LoginController {
 
-    @Autowired
     UserService userService;
 
-    @Autowired
     UserTypeService userTypeService;
 
-    @Autowired
     ZoneService zoneService;
 
     @PostMapping(value = "/userLogin", produces = { "application/json", "application/xml" }, consumes = {

@@ -3,23 +3,17 @@ package edu.mondragon.aiqua_server.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.mondragon.aiqua_server.models.Zone;
 import edu.mondragon.aiqua_server.repositories.ZoneRepository;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class ZoneService {
-    @Autowired
     private ZoneRepository zoneRepository;
 
-    public ZoneService(ZoneRepository zoneRepository) {
-        this.zoneRepository = zoneRepository;
-    }
-
-    public ZoneService() {
-    }
 
     public List<Zone> list() {
         return zoneRepository.findAll();

@@ -28,8 +28,9 @@ public class Data {
     public Data() {
     }
 
-    public Data(Integer dataID, Integer flow, double pressure, Reductor reductor) {
+    public Data(Integer dataID, Date timestamp, Integer flow, double pressure, Reductor reductor) {
         this.dataID = dataID;
+        this.timestamp = timestamp;
         this.flow = flow;
         this.pressure = pressure;
         this.reductor = reductor;
@@ -41,6 +42,14 @@ public class Data {
 
     public void setDataID(Integer dataID) {
         this.dataID = dataID;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
     }
 
     public Integer getFlow() {
@@ -66,5 +75,7 @@ public class Data {
     public void setReductor(Reductor reductor) {
         this.reductor = reductor;
     }
+
+    
 
 }

@@ -2,14 +2,11 @@ package edu.mondragon.aiqua_server.controllers;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.mondragon.aiqua_server.models.Reductor;
@@ -19,20 +16,18 @@ import edu.mondragon.aiqua_server.services.ReductorService;
 import edu.mondragon.aiqua_server.services.TownService;
 import edu.mondragon.aiqua_server.services.UserService;
 import edu.mondragon.aiqua_server.services.ZoneService;
+import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping("/user")
+@AllArgsConstructor
 public class UserController {
-    @Autowired
     ZoneService zoneService;
 
-    @Autowired
     TownService townService;
 
-    @Autowired
     UserService userService;
 
-    @Autowired
     ReductorService reductorService;
 
     @PostMapping(value = "/zones", produces = { "application/json", "application/xml" }, consumes = {

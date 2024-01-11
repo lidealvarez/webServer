@@ -4,25 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.mondragon.aiqua_server.models.Reductor;
 import edu.mondragon.aiqua_server.models.Town;
-import edu.mondragon.aiqua_server.models.Zone;
 import edu.mondragon.aiqua_server.repositories.ReductorRepository;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class ReductorService {
-    @Autowired
     private ReductorRepository reductorRepository;
-
-    public ReductorService(ReductorRepository reductorRepository) {
-        this.reductorRepository = reductorRepository;
-    }
-
-    public ReductorService() {
-    }
 
     public List<Reductor> list() {
         return reductorRepository.findAll();

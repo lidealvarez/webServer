@@ -4,24 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.mondragon.aiqua_server.models.Town;
 import edu.mondragon.aiqua_server.models.Zone;
 import edu.mondragon.aiqua_server.repositories.TownRepository;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class TownService {
-    @Autowired
     private TownRepository townRepository;
-
-    public TownService(TownRepository townRepository) {
-        this.townRepository = townRepository;
-    }
-
-    public TownService() {
-    }
 
     public List<Town> list() {
         return townRepository.findAll();

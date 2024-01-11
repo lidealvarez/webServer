@@ -3,23 +3,17 @@ package edu.mondragon.aiqua_server.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.mondragon.aiqua_server.models.UserType;
 import edu.mondragon.aiqua_server.repositories.UserTypeRepository;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class UserTypeService {
-    @Autowired
     private UserTypeRepository userTypeRepository;
 
-    public UserTypeService(UserTypeRepository userTypeRepository) {
-		this.userTypeRepository = userTypeRepository;
-	}
-
-	public UserTypeService() {
-    }
 
     public List<UserType> list() {
         return userTypeRepository.findAll();

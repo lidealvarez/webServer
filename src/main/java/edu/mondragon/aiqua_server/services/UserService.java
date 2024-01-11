@@ -3,27 +3,18 @@ package edu.mondragon.aiqua_server.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.mondragon.aiqua_server.models.User;
 import edu.mondragon.aiqua_server.models.UserType;
 import edu.mondragon.aiqua_server.models.Zone;
 import edu.mondragon.aiqua_server.repositories.UserRepository;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class UserService {
-    @Autowired
     private UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
-
-    public UserService() {
-    }
-
-    
 
     public List<User> list() {
         return userRepository.findAll();
@@ -54,7 +45,7 @@ public class UserService {
         List<User> users = userRepository.findByUsername(username);
         User user;
 
-        if (users.size() <= 0) {
+        if (users.isEmpty()) {
             user = null;
         } else {
             user = users.get(0);

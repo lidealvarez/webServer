@@ -5,7 +5,6 @@ import static org.junit.Assert.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import edu.mondragon.aiqua_server.models.User;
-import edu.mondragon.aiqua_server.models.UserType;
 
 class UserTest {
 
