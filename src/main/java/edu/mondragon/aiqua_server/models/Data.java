@@ -1,5 +1,7 @@
 package edu.mondragon.aiqua_server.models;
 
+import java.util.Date;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +17,7 @@ public class Data {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer dataID;
 
+    private Date timestamp;
     private Integer flow;
     private double pressure;
 
