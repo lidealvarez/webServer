@@ -32,6 +32,14 @@ class ReductorTest {
     }
 
     @Test
+    void testTownGettersAndSetters() {
+        Town town = new Town(1, "Azkoitia", new Zone(1, "Urola Erdia"));
+        Reductor reductor = new Reductor();
+        reductor.setTown(town);
+        assertEquals(town, reductor.getTown());
+    }
+
+    @Test
     void testConstructor() {
         Town town = new Town(1, "Azkoitia", new Zone(1, "Urola Erdia"));
         Reductor reductor = new Reductor(1, "Industrialdea", 2.4, town);
