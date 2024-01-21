@@ -40,17 +40,19 @@ class UserServiceTest {
 
     @Test
     void testReadUser_UsernameAndPassword() {
-        when(userRepository.findByUsernameAndPassword("nagore", "nagore123")).thenReturn(Collections.emptyList());
-        User user = userService.readUser("nagore", "nagore123");
-        assertNull(user);
-    }
+        User existingUser = new User();
+        when(userRepository.findByUsernameAndPassword("nagore", "nagore123"))
+                .thenReturn(Collections.singletonList(existingUser));
 
-    @Test
-    void testReadUser_UsernameAndPassword_EmptyList() {
-        when(userRepository.findByUsernameAndPassword("no", "password"))
-                .thenReturn(Collections.emptyList());
-        User user = userService.readUser("no", "password");
-        assertNull(user);
+        User user = userService.readUser("nagore", "nagore123");
+
+        assertNotNull(user);
+        assertEquals(existingUser, user);
+
+        // Empty user list
+        when(userRepository.findByUsernameAndPassword("no", "no")).thenReturn(Collections.emptyList());
+        User nonExistingUser = userService.readUser("no", "no");
+        assertNull(nonExistingUser);
     }
 
     @Test
