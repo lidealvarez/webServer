@@ -10,7 +10,6 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import edu.mondragon.aiqua_server.models.User;
@@ -19,7 +18,6 @@ import edu.mondragon.aiqua_server.models.Zone;
 import edu.mondragon.aiqua_server.repositories.UserRepository;
 import edu.mondragon.aiqua_server.services.UserService;
 
-@SpringBootTest
 class UserServiceTest {
 
     @MockBean
@@ -29,6 +27,7 @@ class UserServiceTest {
 
     @BeforeEach
     void setUp() {
+        userRepository = mock(UserRepository.class);
         userService = new UserService(userRepository);
     }
 
