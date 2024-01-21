@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import edu.mondragon.aiqua_server.models.Town;
 import edu.mondragon.aiqua_server.models.User;
 import edu.mondragon.aiqua_server.models.UserType;
 import edu.mondragon.aiqua_server.models.Zone;
@@ -40,16 +39,6 @@ class ZoneTest {
         users.add(new User(2, "nagore", "123", "Nagore", "Elduaien", "67890123", "nagore@gmail.com", userType, zones));
         zone.setUsers(users);
         assertEquals(users, zone.getUsers());
-    }
-
-    @Test
-    void testTownListGettersAndSetters() {
-        Zone zone = new Zone();
-        List<Town> towns = new ArrayList<>();
-        towns.add(new Town(1, "Azkoitia", new Zone(1, "Urola Erdia")));
-        towns.add(new Town(2, "Azkoitia", new Zone(1, "Urola Erdia")));
-        zone.setTownList(towns);
-        assertEquals(towns, zone.getTownList());
     }
 
     @Test
