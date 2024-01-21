@@ -1,9 +1,9 @@
 package edu.mondragon.aiqua_server;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -12,84 +12,89 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import edu.mondragon.aiqua_server.models.Zone;
-import edu.mondragon.aiqua_server.repositories.ZoneRepository;
-import edu.mondragon.aiqua_server.services.ZoneService;
+import edu.mondragon.aiqua_server.models.Reductor;
+import edu.mondragon.aiqua_server.models.Town;
+import edu.mondragon.aiqua_server.repositories.ReductorRepository;
+import edu.mondragon.aiqua_server.services.ReductorService;
 
 class ReductorServiceTest {
 
     @MockBean
-    private ZoneRepository zoneRepository;
+    private ReductorRepository reductorRepository;
 
-    private ZoneService zoneService;
+    private ReductorService reductorService;
 
     @BeforeEach
     void setUp() {
-        zoneRepository = mock(ZoneRepository.class);
-        zoneService = new ZoneService(zoneRepository);
+        reductorRepository = mock(ReductorRepository.class);
+        reductorService = new ReductorService(reductorRepository);
     }
 
     @Test
     void testList() {
-        when(zoneRepository.findAll()).thenReturn(Collections.emptyList());
-        List<Zone> zones = zoneService.list();
-        assertTrue(zones.isEmpty());
+        when(reductorRepository.findAll()).thenReturn(Collections.emptyList());
+        List<Reductor> reductors = reductorService.list();
+        assertTrue(reductors.isEmpty());
     }
 
     @Test
-    void testReadZone_Existing() {
-        Zone existingZone = new Zone();
-        existingZone.setZoneID(1);
-        when(zoneRepository.findById(1)).thenReturn(Optional.of(existingZone));
+    void testReadReductor_Existing() {
+        Reductor existingReductor = new Reductor();
+        existingReductor.setReductorID(1);
+        when(reductorRepository.findById(1)).thenReturn(Optional.of(existingReductor));
 
-        Zone zone = zoneService.readZone(1);
+        Reductor reductor = reductorService.readReductor(1);
 
-        assertNotNull(zone);
-        assertEquals(existingZone, zone);
+        assertNotNull(reductor);
+        assertEquals(existingReductor, reductor);
     }
 
     @Test
-    void testReadZone_NonExisting() {
-        when(zoneRepository.findById(1)).thenReturn(Optional.empty());
+    void testReadReductor_NonExisting() {
+        when(reductorRepository.findById(1)).thenReturn(Optional.empty());
 
-        Zone zone = zoneService.readZone(1);
+        Reductor reductor = reductorService.readReductor(1);
 
-        assertNull(zone);
+        assertNull(reductor);
     }
 
     @Test
-    void testCreateZone() {
-        String description = "Urola Erdia";
+    void testReadReductorsByTown_WithReductors() {
+        Town town = new Town();
+        town.setTownID(1);
 
-        zoneService.createZone(description);
+        List<Reductor> reductors = new ArrayList<>();
+        reductors.add(new Reductor(1,"Berazubi", 4.3, town));
 
-        verify(zoneRepository, times(1)).save(any(Zone.class));
+        when(reductorRepository.findByTown(town)).thenReturn(reductors);
+
+        List<Reductor> resultReductors = reductorService.readReductorsByTown(town);
+
+        assertFalse(resultReductors.isEmpty());
+        assertEquals(reductors, resultReductors);
     }
 
     @Test
-    void testUpdateZone() {
-        Integer zoneID = 1;
-        String description = "Urola Garaia";
-        Zone existingZone = new Zone();
-        existingZone.setZoneID(zoneID);
-        when(zoneRepository.findById(zoneID)).thenReturn(Optional.of(existingZone));
+    void testReadReductorsByTown_WithoutReductors() {
+        Town town = new Town();
+        town.setTownID(1);
 
-        zoneService.updateZone(zoneID, description);
+        when(reductorRepository.findByTown(town)).thenReturn(Collections.emptyList());
 
-        assertEquals(description, existingZone.getDescription());
-        verify(zoneRepository, times(1)).save(existingZone);
+        List<Reductor> resultReductors = reductorService.readReductorsByTown(town);
+
+        assertTrue(resultReductors.isEmpty());
     }
 
     @Test
-    void testDeleteZone() {
-        Integer zoneID = 1;
-        Zone existingZone = new Zone();
-        existingZone.setZoneID(zoneID);
-        when(zoneRepository.findById(zoneID)).thenReturn(Optional.of(existingZone));
+    void testDeleteReductor() {
+        Integer reductorID = 1;
+        Reductor existingReductor = new Reductor();
+        existingReductor.setReductorID(reductorID);
+        when(reductorRepository.findById(reductorID)).thenReturn(Optional.of(existingReductor));
 
-        zoneService.deleteZone(zoneID);
+        reductorService.deleteReductor(reductorID);
 
-        verify(zoneRepository, times(1)).delete(existingZone);
+        verify(reductorRepository, times(1)).delete(existingReductor);
     }
 }
-
