@@ -46,6 +46,14 @@ class UserServiceTest {
     }
 
     @Test
+    void testReadUser_UsernameAndPassword_EmptyList() {
+        when(userRepository.findByUsernameAndPassword("no", "password"))
+                .thenReturn(Collections.emptyList());
+        User user = userService.readUser("no", "password");
+        assertNull(user);
+    }
+
+    @Test
     void testReadUserZones() {
         User user = new User();
         List<Zone> zones = new ArrayList<>();
@@ -53,16 +61,31 @@ class UserServiceTest {
         zones.add(new Zone(2, "Urola Garaia"));
         user.setZones(zones);
         when(userRepository.findById(1)).thenReturn(Optional.of(user));
-        List<Zone> zoneList = userService.readUserZones(1);
 
-        assertFalse(zoneList.isEmpty());
+        List<Zone> zoneListWithResult = userService.readUserZones(1);
+        assertNotNull(zoneListWithResult);
+        assertEquals(zones, zoneListWithResult);
+
+        // List zones empty
+        when(userRepository.findById(2)).thenReturn(Optional.of(new User()));
+
+        List<Zone> emptyZoneList = userService.readUserZones(2);
+        assertNull(emptyZoneList);
     }
 
     @Test
     void testReadUser_Username() {
-        when(userRepository.findByUsername("nagore")).thenReturn(Collections.emptyList());
+        User existingUser = new User();
+        when(userRepository.findByUsername("nagore")).thenReturn(Collections.singletonList(existingUser));
         User user = userService.readUser("nagore");
-        assertNull(user);
+
+        assertNotNull(user);
+        assertEquals(existingUser, user);
+
+        // Empty user list
+        when(userRepository.findByUsername("no")).thenReturn(Collections.emptyList());
+        User nonExistingUser = userService.readUser("no");
+        assertNull(nonExistingUser);
     }
 
     @Test
