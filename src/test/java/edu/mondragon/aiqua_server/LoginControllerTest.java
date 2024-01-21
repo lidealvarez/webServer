@@ -75,7 +75,8 @@ class LoginControllerTest {
         List<Zone> zones = new ArrayList<>();
         zones.add(new Zone(1, "Urola Erdia"));
         zones.add(new Zone(2, "Urola Garaia"));
-        User user = new User(1, "noexist", "123", "Nagore", "Elduaien", "67890123", "nagore@gmail.com", userType, zones);
+        User user = new User(1, "noexist", "123", "Nagore", "Elduaien", "67890123", "nagore@gmail.com", userType,
+                zones);
         when(userService.readUser("noexist")).thenReturn(null);
 
         ResponseEntity<User> response = loginController.userLogin(user);
